@@ -1,0 +1,464 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube - Broadcast Yourself</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="home-page">
+    <div class="top-links">
+      <a href="https://youtube.com/signup">Sign Up</a> |
+      <a href="https://youtube.com/login">Log In</a> |
+      <a href="https://youtube.com/history">Viewing History</a> |
+      <a href="https://youtube.com/help">Help</a>
+    </div>
+    
+    <div id="header">
+      <div class="logo">
+        <a href="/">
+          <img src="https://web.archive.org/web/20060707055236im_/http://youtube.com/img/logo_tagline_sm.gif" alt="YouTube - Broadcast Yourself">
+        </a>
+      </div>
+      <div class="search">
+        <input type="text" id="search-input-home" placeholder="Search" class="search-input">
+        <select id="search-type-home" class="search-type">
+          <option value="videos">Videos</option>
+          <option value="channels">Channels</option>
+        </select>
+        <button type="button" onclick="searchVideos('home')">Search</button>
+      </div>
+    </div>
+
+    <div class="main-nav">
+      <a href="/" class="active">Home</a>
+      <a href="/videos" onclick="showVideos(); return false;">Videos</a>
+      <a href="/channels" onclick="showChannels(); return false;">Channels</a>
+      <a href="/groups">Groups</a>
+      <a href="/categories">Categories</a>
+      <a href="/upload">Upload</a>
+    </div>
+
+    <div class="personal-nav">
+      <a href="/my-videos">My Videos</a> |
+      <a href="/my-favorites">My Favorites</a> |
+      <a href="/my-friends">My Friends</a> |
+      <a href="/my-inbox">My Inbox</a> |
+      <a href="/my-subscriptions">My Subscriptions</a> |
+      <a href="/my-playlists">My Playlists</a> |
+      <a href="/my-groups">My Groups</a> |
+      <a href="/my-profile">My Profile</a>
+    </div>
+
+    <div class="sub-nav" id="channels-sub-nav" style="display: none;">
+      <a href="#" onclick="loadChannels('mostSubscribed'); return false;">Most Subscribed Channels</a> |
+      <a href="#" onclick="loadChannels('recent'); return false;">Recent Channels</a> |
+      <a href="#" onclick="loadChannels('mostViewed'); return false;">Most Viewed Channels</a>
+    </div>
+
+    <div class="home-content">
+      <div class="main-section">
+        <div class="director-videos">
+          <h3>Director Videos <a href="#" class="see-more">See More Videos</a></h3>
+          <div class="video-thumbnails">
+            <!-- Videos will be loaded here by JavaScript -->
+          </div>
+        </div>
+
+        <div class="featured-videos">
+          <h3>Featured Videos <a href="#" class="see-more">See More Videos</a></h3>
+          <div id="featured-videos-list">
+            <!-- Featured videos populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="broadcast-box">
+          <h3>Broadcast Yourself on YouTube</h3>
+          <div class="broadcast-item">
+            <strong>Watch</strong> Instantly find and watch millions of fast streaming videos
+          </div>
+          <div class="broadcast-item">
+            <strong>Upload</strong> Quickly upload and tag videos in almost any video format
+          </div>
+          <div class="broadcast-item">
+            <strong>Share</strong> Easily share your videos with family, friends, or co-workers
+          </div>
+        </div>
+
+        <div class="member-login">
+          <h3>Member Login</h3>
+          <form>
+            <label>User Name:</label>
+            <input type="text"><br>
+            <label>Password:</label>
+            <input type="password"><br>
+            <button>Login</button>
+            <a href="#" class="sign-up">Sign Up</a>
+          </form>
+          <div class="forgot-links">
+            <a href="#">Forgot Username</a> | <a href="#">Password</a>
+          </div>
+        </div>
+
+        <div class="whats-new">
+          <h3>What's New at YouTube</h3>
+          <p>
+            <strong>Musicians</strong><br>
+            Are you a musician? <a href="#">Sign up</a> for our new musician account or <a href="#">login</a> to convert your existing account.
+          </p>
+          <p>
+            <strong>We're Hiring!</strong><br>
+            Sys Admins, Web Developers and Engineers apply within
+          </p>
+          <div class="links">
+            <a href="#">Explore YouTube</a> | <a href="#">Read our Blog</a>
+          </div>
+        </div>
+
+        <div class="active-channels">
+          <h3>Active Channels <a href="#" class="see-more">See More Channels</a></h3>
+          <div id="active-channels-list">
+            <!-- Active channels populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="active-groups">
+          <h3>Active Groups</h3>
+          <!-- Active groups populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="videos-page" style="display: none;">
+    <div class="top-links">
+      <a href="https://youtube.com/signup">Sign Up</a> |
+      <a href="https://youtube.com/login">Log In</a> |
+      <a href="https://youtube.com/history">Viewing History</a> |
+      <a href="https://youtube.com/help">Help</a>
+    </div>
+    
+    <div id="header">
+      <div class="logo">
+        <a href="/" onclick="showHomePage(); return false;">
+          <img src="https://web.archive.org/web/20060707055236im_/http://youtube.com/img/logo_tagline_sm.gif" alt="YouTube - Broadcast Yourself">
+        </a>
+      </div>
+      <div class="search">
+        <input type="text" id="search-input-videos" placeholder="Search" class="search-input">
+        <select id="search-type-videos" class="search-type">
+          <option value="videos">Videos</option>
+          <option value="channels">Channels</option>
+        </select>
+        <button type="button" onclick="searchVideos('videos')">Search</button>
+      </div>
+    </div>
+
+    <div class="main-nav">
+      <a href="/" onclick="showHomePage(); return false;">Home</a>
+      <a href="/videos" onclick="showVideos(); return false;" class="active">Videos</a>
+      <a href="/channels" onclick="showChannels(); return false;">Channels</a>
+      <a href="/groups">Groups</a>
+      <a href="/categories">Categories</a>
+      <a href="/upload">Upload</a>
+    </div>
+
+    <div class="personal-nav">
+      <a href="/my-videos">My Videos</a> |
+      <a href="/my-favorites">My Favorites</a> |
+      <a href="/my-friends">My Friends</a> |
+      <a href="/my-inbox">My Inbox</a> |
+      <a href="/my-subscriptions">My Subscriptions</a> |
+      <a href="/my-playlists">My Playlists</a> |
+      <a href="/my-groups">My Groups</a> |
+      <a href="/my-profile">My Profile</a>
+    </div>
+
+    <div class="sub-nav" id="channels-sub-nav" style="display: none;">
+      <a href="#" onclick="loadChannels('mostSubscribed'); return false;">Most Subscribed Channels</a> |
+      <a href="#" onclick="loadChannels('recent'); return false;">Recent Channels</a> |
+      <a href="#" onclick="loadChannels('mostViewed'); return false;">Most Viewed Channels</a>
+    </div>
+
+    <div class="channel-grid-header">
+      <div>
+        <strong>Most Viewed</strong>
+        <span class="video-count"></span>
+      </div>
+      <div class="time-filter">
+        <span>Time:</span>
+        <a href="#" class="active" onclick="loadMostViewedVideos('today'); return false;">Today</a>
+        <a href="#" onclick="loadMostViewedVideos('week'); return false;">This Week</a>
+        <a href="#" onclick="loadMostViewedVideos('month'); return false;">This Month</a>
+        <a href="#" onclick="loadMostViewedVideos('all'); return false;">All Time</a>
+      </div>
+    </div>
+
+    <div id="video-grid">
+      <!-- Videos will be loaded here -->
+    </div>
+
+    <div class="pagination">
+      <span>Pages:</span>
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">Next »</a>
+    </div>
+  </div>
+
+  <div id="search-page" style="display: none;">
+    <div class="top-links">
+      <a href="https://youtube.com/signup">Sign Up</a> |
+      <a href="https://youtube.com/login">Log In</a> |
+      <a href="https://youtube.com/history">Viewing History</a> |
+      <a href="https://youtube.com/help">Help</a>
+    </div>
+    
+    <div id="header">
+      <div class="logo">
+        <a href="/" onclick="showHomePage(); return false;">
+          <img src="https://web.archive.org/web/20060707055236im_/http://youtube.com/img/logo_tagline_sm.gif" alt="YouTube - Broadcast Yourself">
+        </a>
+      </div>
+      <div class="search">
+        <input type="text" id="search-input-search" placeholder="Search" class="search-input">
+        <select id="search-type-search" class="search-type">
+          <option value="videos">Videos</option>
+          <option value="channels">Channels</option>
+        </select>
+        <button type="button" onclick="searchVideos('search')">Search</button>
+      </div>
+    </div>
+
+    <div class="main-nav">
+      <a href="/" onclick="showHomePage(); return false;">Home</a>
+      <a href="/videos" onclick="showVideos(); return false;">Videos</a>
+      <a href="/channels" onclick="showChannels(); return false;">Channels</a>
+      <a href="/groups">Groups</a>
+      <a href="/categories">Categories</a>
+      <a href="/upload">Upload</a>
+    </div>
+
+    <div class="personal-nav">
+      <a href="/my-videos">My Videos</a> |
+      <a href="/my-favorites">My Favorites</a> |
+      <a href="/my-friends">My Friends</a> |
+      <a href="/my-inbox">My Inbox</a> |
+      <a href="/my-subscriptions">My Subscriptions</a> |
+      <a href="/my-playlists">My Playlists</a> |
+      <a href="/my-groups">My Groups</a> |
+      <a href="/my-profile">My Profile</a>
+    </div>
+
+    <div class="sub-nav" id="channels-sub-nav" style="display: none;">
+      <a href="#" onclick="loadChannels('mostSubscribed'); return false;">Most Subscribed Channels</a> |
+      <a href="#" onclick="loadChannels('recent'); return false;">Recent Channels</a> |
+      <a href="#" onclick="loadChannels('mostViewed'); return false;">Most Viewed Channels</a>
+    </div>
+
+    <div class="channel-grid-header">
+      <div>
+        <strong>Search Results</strong>
+        <span class="search-count"></span>
+      </div>
+    </div>
+    
+    <div id="search-results-grid">
+      <!-- Search results will be loaded here -->
+    </div>
+  </div>
+
+  <div id="video-page" style="display: none;">
+    <div class="top-links">
+      <a href="https://youtube.com/signup">Sign Up</a> |
+      <a href="https://youtube.com/login">Log In</a> |
+      <a href="https://youtube.com/history">Viewing History</a> |
+      <a href="https://youtube.com/help">Help</a>
+    </div>
+    
+    <div id="header">
+      <div class="logo">
+        <a href="/" onclick="showHomePage(); return false;">
+          <img src="https://web.archive.org/web/20060707055236im_/http://youtube.com/img/logo_tagline_sm.gif" alt="YouTube - Broadcast Yourself">
+        </a>
+      </div>
+      <div class="search">
+        <input type="text" id="search-input-video" placeholder="Search" class="search-input">
+        <select id="search-type-video" class="search-type">
+          <option value="videos">Videos</option>
+          <option value="channels">Channels</option>
+        </select>
+        <button type="button" onclick="searchVideos('video')">Search</button>
+      </div>
+    </div>
+
+    <div class="main-nav">
+      <a href="/" class="active" onclick="showHomePage(); return false;">Home</a>
+      <a href="/videos" onclick="showVideos(); return false;">Videos</a>
+      <a href="/channels" onclick="showChannels(); return false;">Channels</a>
+      <a href="/groups">Groups</a>
+      <a href="/categories">Categories</a>
+      <a href="/upload">Upload</a>
+    </div>
+
+    <div class="personal-nav">
+      <a href="/my-videos">My Videos</a> |
+      <a href="/my-favorites">My Favorites</a> |
+      <a href="/my-friends">My Friends</a> |
+      <a href="/my-inbox">My Inbox</a> |
+      <a href="/my-subscriptions">My Subscriptions</a> |
+      <a href="/my-playlists">My Playlists</a> |
+      <a href="/my-groups">My Groups</a> |
+      <a href="/my-profile">My Profile</a>
+    </div>
+
+    <div class="sub-nav" id="channels-sub-nav" style="display: none;">
+      <a href="#" onclick="loadChannels('mostSubscribed'); return false;">Most Subscribed Channels</a> |
+      <a href="#" onclick="loadChannels('recent'); return false;">Recent Channels</a> |
+      <a href="#" onclick="loadChannels('mostViewed'); return false;">Most Viewed Channels</a>
+    </div>
+
+    <div class="video-container">
+      <div class="main-content">
+        <h1 id="video-title" class="video-title-header"></h1>
+        <div class="video-player">
+          <div id="player"></div>
+        </div>
+        <div class="video-info">
+          <div class="video-stats">
+            <span>In Category: Example</span>
+            <div class="rating">
+              <span>Rate: </span>
+              <span class="stars">
+                <img src="https://web.archive.org/web/20060712123125im_/http://youtube.com/img/star.gif" alt="★">
+                <img src="https://web.archive.org/web/20060712123125im_/http://youtube.com/img/star.gif" alt="★">
+                <img src="https://web.archive.org/web/20060712123125im_/http://youtube.com/img/star.gif" alt="★">
+                <img src="https://web.archive.org/web/20060712123125im_/http://youtube.com/img/star.gif" alt="★">
+                <img src="https://web.archive.org/web/20060712123125im_/http://youtube.com/img/star.gif" alt="★">
+              </span>
+              <span class="rating-info">(<span id="rating-count">0</span> ratings)</span>
+            </div>
+          </div>
+          <div class="video-details">
+            <p>Added: <span id="upload-date"></span></p>
+            <p>From Creator: <a href="#" id="channel-name"></a></p>
+          </div>
+          <div class="video-actions">
+            <a href="#"><img src="https://web.archive.org/web/20060712123125im_/http://youtube.com/img/email_w_icon.gif"> Share Video</a>
+            <a href="#"><img src="https://web.archive.org/web/20060712123125im_/http://youtube.com/img/groups_w_icon.gif"> Add to Groups</a>
+            <a href="#"><img src="https://web.archive.org/web/20060712123125im_/http://youtube.com/img/flag_w_icon.gif"> Flag as Inappropriate</a>
+          </div>
+          
+          <div class="video-comments">
+            <h3>Comments</h3>
+            <div id="comments-container"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="video-sidebar">
+        <div class="sidebar-section">
+          <h3>About This Video</h3>
+          <div id="video-details-sidebar"></div>
+        </div>
+        <div class="sidebar-section">
+          <h3>Related Videos</h3>
+          <div id="related-videos" class="sidebar-videos"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="channel-page" style="display: none;">
+    <div class="top-links">
+      <a href="https://youtube.com/signup">Sign Up</a> |
+      <a href="https://youtube.com/login">Log In</a> |
+      <a href="https://youtube.com/history">Viewing History</a> |
+      <a href="https://youtube.com/help">Help</a>
+    </div>
+    
+    <div id="header">
+      <div class="logo">
+        <a href="/" onclick="showHomePage(); return false;">
+          <img src="https://web.archive.org/web/20060707055236im_/http://youtube.com/img/logo_tagline_sm.gif" alt="YouTube - Broadcast Yourself">
+        </a>
+      </div>
+      <div class="search">
+        <input type="text" id="search-input-channels" placeholder="Search" class="search-input">
+        <select id="search-type-channels" class="search-type">
+          <option value="videos">Videos</option>
+          <option value="channels">Channels</option>
+        </select>
+        <button type="button" onclick="searchVideos('channels')">Search</button>
+      </div>
+    </div>
+
+    <div class="main-nav">
+      <a href="/" onclick="showHomePage(); return false;">Home</a>
+      <a href="/videos" onclick="showVideos(); return false;">Videos</a>
+      <a href="/channels" onclick="showChannels(); return false;" class="active">Channels</a>
+      <a href="/groups">Groups</a>
+      <a href="/categories">Categories</a>
+      <a href="/upload">Upload</a>
+    </div>
+
+    <div class="personal-nav">
+      <a href="/my-videos">My Videos</a> |
+      <a href="/my-favorites">My Favorites</a> |
+      <a href="/my-friends">My Friends</a> |
+      <a href="/my-inbox">My Inbox</a> |
+      <a href="/my-subscriptions">My Subscriptions</a> |
+      <a href="/my-playlists">My Playlists</a> |
+      <a href="/my-groups">My Groups</a> |
+      <a href="/my-profile">My Profile</a>
+    </div>
+
+    <div class="sub-nav">
+      <a href="#" onclick="loadChannels('mostSubscribed'); return false;" class="active">Most Subscribed Channels</a> |
+      <a href="#" onclick="loadChannels('recent'); return false;">Recent Channels</a> |
+      <a href="#" onclick="loadChannels('mostViewed'); return false;">Most Viewed Channels</a>
+    </div>
+
+    <div class="channel-grid-header">
+      <div>
+        <strong>Most Subscribed Channels</strong>
+        <span class="channel-count"></span>
+      </div>
+    </div>
+
+    <div id="channel-grid">
+      <!-- Channels will be loaded here -->
+    </div>
+
+    <div class="pagination">
+      <span>Pages:</span>
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">Next »</a>
+    </div>
+  </div>
+
+  <footer>
+    <a href="https://youtube.com/blog">Our Blog</a> |
+    <a href="https://youtube.com/explore">Explore YouTube</a> |
+    <a href="https://youtube.com/about">About Us</a> |
+    <a href="https://youtube.com/help">Help Center</a> |
+    <a href="https://youtube.com/safety">Safety Tips</a> |
+    <a href="https://youtube.com/developers">Developers</a> |
+    <a href="https://youtube.com/terms">Terms of Use</a> |
+    <a href="https://youtube.com/privacy">Privacy Policy</a> |
+    <a href="https://youtube.com/jobs">Jobs</a>
+    <br><br>
+    Copyright 2006 YouTube, Inc.
+    <img src="https://web.archive.org/web/20060707055236im_/http://youtube.com/img/rss.gif" alt="RSS" class="rss-icon">
+  </footer>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="app.js"></script>
+</body>
+</html>
