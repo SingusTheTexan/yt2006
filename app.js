@@ -1,8 +1,24 @@
 // YouTube API key handling 
-let API_KEY = 'AIzaSyBqLgNk_EvfBf-mC2s-VlYv3K2eLTrY6UI';
+let API_KEY = ''; // Remove hardcoded key
 
-// Modified initialization function
+// Modified initialization function 
 async function initializeApi() {
+  // Prompt user for API key if not already stored
+  let apiKey = localStorage.getItem('youtubeApiKey');
+  
+  if (!apiKey) {
+    apiKey = prompt('Please enter your YouTube Data API Key. You can get one from https://console.cloud.google.com/apis/credentials');
+    
+    if (!apiKey) {
+      throw new Error('YouTube API key is required');
+    }
+    
+    // Store for future use
+    localStorage.setItem('youtubeApiKey', apiKey);
+  }
+
+  API_KEY = apiKey; // Set the API key for use
+
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
     script.src = 'https://apis.google.com/js/api.js';
@@ -11,7 +27,7 @@ async function initializeApi() {
       gapi.load('client', async () => {
         try {
           await gapi.client.init({
-            'apiKey': API_KEY,
+            'apiKey': apiKey,
             'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
           });
           console.log('YouTube Data API v3 initialized successfully');
@@ -19,6 +35,8 @@ async function initializeApi() {
           resolve();
         } catch (error) {
           console.error('Error initializing YouTube API:', error);
+          // Clear stored key if invalid
+          localStorage.removeItem('youtubeApiKey'); 
           handleApiError();
           reject(error);
         }
