@@ -3,6 +3,7 @@
   <meta charset="UTF-8">
   <title>YouTube - Broadcast Yourself</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="https://web.archive.org/web/20060707055236im_/http://youtube.com/favicon.ico" type="image/x-icon">
 </head>
 <body>
   <div id="home-page">
@@ -325,7 +326,13 @@
       <div class="main-content">
         <h1 id="video-title" class="video-title-header"></h1>
         <div class="video-player">
-          <div id="player"></div>
+          <object id="player" type="application/x-shockwave-flash" data="/player2.swf" width="640" height="390">
+            <param name="movie" value="/player2.swf">
+            <param name="flashvars" value="video_id=">
+            <param name="allowFullScreen" value="true">
+            <param name="wmode" value="transparent">
+            <param name="allowscriptaccess" value="always">
+          </object>
         </div>
         <div class="video-info">
           <div class="video-stats">
